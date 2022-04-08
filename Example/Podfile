@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '12.0'
+
+target 'WBTools_Example' do
+  pod 'WBTools', :path => '../'
+
+  target 'WBTools_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

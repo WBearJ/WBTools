@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol WBArchivable {
+public protocol WBArchivable {
     var archive: NSDictionary { get }
     init?(unarchive: NSDictionary?)
 }
 
-struct WBArchivableTool {
-    static func documentDirtory(_ file: String) -> String? {
+public struct WBArchivableTool {
+    public static func documentDirtory(_ file: String) -> String? {
         //document文件夹
         guard let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first else {
             return nil
@@ -24,7 +24,7 @@ struct WBArchivableTool {
     //MARK: ============= objects archive
     
     @discardableResult
-    static func archiveObjects<T: WBArchivable>(lists: [T], file: String) -> Bool {
+    public static func archiveObjects<T: WBArchivable>(lists: [T], file: String) -> Bool {
         guard let archivePath = documentDirtory(file) else {
             return false
         }
@@ -40,7 +40,7 @@ struct WBArchivableTool {
         }
     }
 
-    static func unarchiveObjects<T: WBArchivable>(file: String) -> [T]? {
+    public static func unarchiveObjects<T: WBArchivable>(file: String) -> [T]? {
         guard let archivePath = documentDirtory(file) else {
             return nil
         }
@@ -59,7 +59,7 @@ struct WBArchivableTool {
     
     //MARK: ================= object archive
     @discardableResult
-    static func archiveObject<T: WBArchivable>(object: T, file: String) -> Bool {
+    public static func archiveObject<T: WBArchivable>(object: T, file: String) -> Bool {
         guard let archivePath = documentDirtory(file) else {
             return false
         }
@@ -74,7 +74,7 @@ struct WBArchivableTool {
         }
     }
 
-    static func unarchiveObject<T: WBArchivable>(file: String) -> T? {
+    public static func unarchiveObject<T: WBArchivable>(file: String) -> T? {
         guard let archivePath = documentDirtory(file) else {
             return nil
         }

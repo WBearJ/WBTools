@@ -24,8 +24,8 @@ public struct WBArchivableTool {
     //MARK: ============= objects archive
     
     @discardableResult
-    public static func archiveObjects<T: WBArchivable>(lists: [T], file: String) -> Bool {
-        guard let archivePath = documentDirtory(file) else {
+    public static func archiveObjects<T: WBArchivable>(lists: [T], fileName: String) -> Bool {
+        guard let archivePath = documentDirtory(fileName) else {
             return false
         }
         
@@ -40,8 +40,8 @@ public struct WBArchivableTool {
         }
     }
 
-    public static func unarchiveObjects<T: WBArchivable>(file: String) -> [T]? {
-        guard let archivePath = documentDirtory(file) else {
+    public static func unarchiveObjects<T: WBArchivable>(fileName: String) -> [T]? {
+        guard let archivePath = documentDirtory(fileName) else {
             return nil
         }
         
@@ -59,8 +59,8 @@ public struct WBArchivableTool {
     
     //MARK: ================= object archive
     @discardableResult
-    public static func archiveObject<T: WBArchivable>(object: T, file: String) -> Bool {
-        guard let archivePath = documentDirtory(file) else {
+    public static func archiveObject<T: WBArchivable>(object: T, fileName: String) -> Bool {
+        guard let archivePath = documentDirtory(fileName) else {
             return false
         }
         
@@ -74,8 +74,8 @@ public struct WBArchivableTool {
         }
     }
 
-    public static func unarchiveObject<T: WBArchivable>(file: String) -> T? {
-        guard let archivePath = documentDirtory(file) else {
+    public static func unarchiveObject<T: WBArchivable>(fileName: String) -> T? {
+        guard let archivePath = documentDirtory(fileName) else {
             return nil
         }
         
@@ -89,5 +89,21 @@ public struct WBArchivableTool {
         }catch {
             return nil
         }
+    }
+    
+    /// 删除归档文件
+    /// - Parameter file: 文件名
+    /// - Returns: 结果
+    public static func deleteArchiveObjects(fileName: String) -> Bool {
+        guard let archivePath = documentDirtory(fileName) else {
+            return false
+        }
+        do {
+            try FileManager.default.removeItem(atPath: archivePath)
+            return true
+        } catch {
+            return false
+        }
+        
     }
 }

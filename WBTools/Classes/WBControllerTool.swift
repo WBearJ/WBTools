@@ -5,10 +5,10 @@
 
 import UIKit
 
-class WBControllerTool: NSObject {
+public struct WBControllerTool {
     
     /// 获取当前viewController
-    public class func currentViewController() -> UIViewController? {
+    public static func currentViewController() -> UIViewController? {
         
         var rootViewController: UIViewController!
         

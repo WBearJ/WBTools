@@ -18,11 +18,10 @@ public struct WBHUDTool {
     }
     
     public static func showCircle(_ time: Int? = nil) {
-        guard let window = window else {
-            return
-        }
-        
         DispatchQueue.main.async {
+            guard let window = window else {
+                return
+            }
             let hud = MBProgressHUD.showAdded(to: window, animated: true)
             hud.tintColor = .white
             hud.isUserInteractionEnabled = false
@@ -46,10 +45,10 @@ public struct WBHUDTool {
     }
     
     public static func hide() {
-        guard let window = window else {
-            return
-        }
         DispatchQueue.main.async {
+            guard let window = window else {
+                return
+            }
             MBProgressHUD.hide(for: window, animated: true)
         }
     }
